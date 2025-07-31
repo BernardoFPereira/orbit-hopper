@@ -11,10 +11,7 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 
 func _process(delta: float) -> void:
-	#if player_in_orbit:
 	orbit.rotate(orbit_speed * delta)
-	#else:
-		#orbit.rotate(2 * delta)
 
 func _on_orbit_area_body_entered(body: Node2D) -> void: 
 	print("----- OOPS -----")
@@ -24,8 +21,3 @@ func _on_orbit_area_body_entered(body: Node2D) -> void:
 		body.speed = 200
 		body.call_deferred("reparent", orbit)
 		body.set_state(body.States.Orbit)
-
-
-#func _on_orbit_area_body_exited(body: Node2D) -> void:
-	#if body.is_in_group("Player"):
-		#body.orbit_target = null

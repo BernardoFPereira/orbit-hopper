@@ -44,13 +44,13 @@ func handle_input(delta):
 	match state:
 		States.Orbit:
 			if Input.is_action_pressed("launch"):
-				print("charging")
-				print(orbit_target.orbit_speed)
+				#print("charging")
+				#print(orbit_target.orbit_speed)
 				orbit_target.orbit_speed += 0.1
 				set_collision_layer_value(2, 0)
 				
 			if Input.is_action_just_released("launch"):
-				print("GO!!!!!")
+				#print("GO!!!!!")
 				reparent(get_tree().root.get_node("Node"))
 				
 				speed *= orbit_target.orbit_speed / 2
