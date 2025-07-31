@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://kmnfya5mv64u"]
+
+[ext_resource type="Script" uid="uid://dmtexvf0q30n3" path="res://planet.gd" id="1_2hiue"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f2txt"]
+radius = 54.3415
+
+[sub_resource type="SphereMesh" id="SphereMesh_0b4ue"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oi3di"]
+radius = 28.2843
+
+[node name="Planet" type="StaticBody2D"]
+script = ExtResource("1_2hiue")
+
+[node name="OrbitArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitArea"]
+shape = SubResource("CircleShape2D_f2txt")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(0, 6.91982e-06)
+scale = Vector2(56.0635, 56.0635)
+mesh = SubResource("SphereMesh_0b4ue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oi3di")
+debug_color = Color(0.806787, 0, 0.209876, 0.42)
+
+[node name="Orbit" type="Node2D" parent="."]
+rotation = -0.000373455
+
+[connection signal="body_entered" from="OrbitArea" to="." method="_on_orbit_area_body_entered"]
+[connection signal="body_exited" from="OrbitArea" to="." method="_on_orbit_area_body_exited"]

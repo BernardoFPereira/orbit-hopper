@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dagwshkql0nff"]
+
+[ext_resource type="Script" uid="uid://ns0rrqbvq6u4" path="res://ship.gd" id="1_kpjcp"]
+[ext_resource type="Texture2D" uid="uid://cahhet26aq4ao" path="res://pilot.png" id="2_kne1u"]
+
+[node name="Ship" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 3
+motion_mode = 1
+script = ExtResource("1_kpjcp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -4, -2, -11, 2, -11, 8, -4, 8, 2, 11, 6, 6, 11, -6, 11, -11, 6, -8, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.702928, 0.702928)
+texture = ExtResource("2_kne1u")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
