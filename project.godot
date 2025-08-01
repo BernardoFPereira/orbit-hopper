@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PlayerManager="*res://player_manager.gd"
 
+[dotnet]
+
+project/assembly_name="GMTK_jam"
+
 [input]
 
 launch={
