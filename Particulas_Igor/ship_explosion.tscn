@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3tf3mgbei5cf"]
+[gd_scene load_steps=10 format=3 uid="uid://c3tf3mgbei5cf"]
 
+[ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="1_e3bqc"]
 [ext_resource type="Texture2D" uid="uid://bfvvqvusax8ni" path="res://Particulas_Igor/Sprite-0002.png" id="2_gy8em"]
 
 [sub_resource type="Curve" id="Curve_1yea0"]
@@ -56,6 +57,8 @@ scale_over_velocity_max = 1.0
 color_ramp = SubResource("GradientTexture1D_2sihw")
 
 [node name="ShipExplosion" type="Node2D"]
+
+[node name="Ship" parent="." instance=ExtResource("1_e3bqc")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
