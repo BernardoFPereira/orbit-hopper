@@ -116,3 +116,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1152, 648)
 metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

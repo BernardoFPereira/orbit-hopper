@@ -5,6 +5,7 @@ class_name Player
 @export var speed := 200
 
 @onready var camera: Camera2D = $"../Camera2D"
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 const  WIDTH := 1886
 const  HEIGHT := 1999
@@ -51,10 +52,13 @@ func _process(delta: float) -> void:
 			if orbit_target.orbit_speed < 0:
 				look_at(orbit_target.global_position)
 				rotation += PI
+				sprite.play("orbit_left")
 			else:
 				look_at(orbit_target.global_position)
+				sprite.play("orbit_right")
 			
 		States.Flying:
+			sprite.play("flying")
 			if orbit_clockwise: 
 				velocity = global_transform.basis_xform(Vector2.UP) * speed
 			else:

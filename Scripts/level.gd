@@ -7,8 +7,8 @@ extends Node
 
 const  WIDTH := 1886
 const  HEIGHT := 1999
-#const TIMER_FMT := ">>> T - % <<<"
 
+var fuel_cells_collected := 0
 var time_left := 120.0
 
 func _ready() -> void:

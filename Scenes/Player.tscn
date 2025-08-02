@@ -1,8 +1,47 @@
-[gd_scene load_steps=9 format=3 uid="uid://dagwshkql0nff"]
+[gd_scene load_steps=13 format=3 uid="uid://dagwshkql0nff"]
 
 [ext_resource type="Script" uid="uid://ns0rrqbvq6u4" path="res://Scripts/ship.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://cahhet26aq4ao" path="res://Assets/pilot.png" id="2_kne1u"]
 [ext_resource type="Texture2D" uid="uid://bfvvqvusax8ni" path="res://Particulas_Igor/Sprite-0002.png" id="3_kne1u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gntrk"]
+atlas = ExtResource("2_kne1u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dewec"]
+atlas = ExtResource("2_kne1u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ixxa"]
+atlas = ExtResource("2_kne1u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nn08x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gntrk")
+}],
+"loop": false,
+"name": &"flying",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dewec")
+}],
+"loop": false,
+"name": &"orbit_left",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ixxa")
+}],
+"loop": false,
+"name": &"orbit_right",
+"speed": 0.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_kne1u"]
 offsets = PackedFloat32Array(0.0147059, 0.352941, 0.696078, 1)
@@ -34,7 +73,14 @@ script = ExtResource("1_kpjcp")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-8, -4, -2, -11, 2, -11, 8, -4, 8, 2, 11, 6, 6, 11, -6, 11, -11, 6, -8, 2)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.6875, 0.6875)
+sprite_frames = SubResource("SpriteFrames_nn08x")
+animation = &"flying"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 scale = Vector2(0.702928, 0.702928)
 texture = ExtResource("2_kne1u")
