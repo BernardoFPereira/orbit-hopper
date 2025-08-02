@@ -1,17 +1,11 @@
-<<<<<<< HEAD
 [gd_scene load_steps=7 format=3 uid="uid://85y3qpeduac8"]
-=======
-[gd_scene load_steps=14 format=3 uid="uid://85y3qpeduac8"]
->>>>>>> sparkle2
 
 [ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://d3sckrvivqlju" path="res://BlackHole.tscn" id="4_f2txt"]
 [ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
-[ext_resource type="PackedScene" uid="uid://bfqc8g3otq8tk" path="res://Particulas_Igor/TelaGlow.tscn" id="7_n6hdu"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f2txt"]
+[ext_resource type="Texture2D" uid="uid://405sdgiushcm" path="res://Assets/Menu/9Patch MenuTP.png" id="6_1ainy"]
 
 [node name="Space" type="Node"]
 script = ExtResource("1_1ainy")
@@ -37,7 +31,6 @@ position = Vector2(422, 248)
 position = Vector2(504, 363)
 rotation = 1.61664
 
-<<<<<<< HEAD
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
@@ -72,50 +65,22 @@ vertical_alignment = 1
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/HUD"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/HUD/PauseMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -167.0
-offset_top = -206.0
-offset_right = 167.0
-offset_bottom = 206.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ContinueButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/Panel"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HUD/PauseMenu"]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 336.0
-offset_right = 159.0
-offset_bottom = 368.0
-texture_normal = SubResource("PlaceholderTexture2D_f2txt")
-texture_pressed = SubResource("PlaceholderTexture2D_f2txt")
-texture_hover = SubResource("PlaceholderTexture2D_f2txt")
-texture_disabled = SubResource("PlaceholderTexture2D_f2txt")
-texture_focused = SubResource("PlaceholderTexture2D_f2txt")
-
-[node name="QuitButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/Panel"]
-layout_mode = 0
-offset_left = 194.0
-offset_top = 336.0
-offset_right = 262.0
-offset_bottom = 368.0
-=======
-[node name="WorldEnvironment" parent="." instance=ExtResource("7_n6hdu")]
->>>>>>> sparkle2
+offset_left = 369.0
+offset_top = 122.0
+offset_right = 781.0
+offset_bottom = 538.0
+texture = ExtResource("6_1ainy")
+patch_margin_left = 189
+patch_margin_top = 39
+patch_margin_right = 164
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
