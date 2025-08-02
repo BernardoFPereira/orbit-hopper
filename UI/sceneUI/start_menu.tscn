@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://coqbs1m8nx0nl"]
+
+[ext_resource type="Texture2D" uid="uid://405sdgiushcm" path="res://Assets/Menu/9Patch MenuTP.png" id="1_mfe3q"]
+[ext_resource type="Texture2D" uid="uid://den2cv8ksi11b" path="res://Assets/Menu/Button2.png" id="2_t3ooo"]
+[ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="3_j7iax"]
+[ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="3_t3ooo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j7iax"]
+font_size = 80
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+shadow_size = 26
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5, 5)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_mfe3q")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.0
+offset_top = -243.0
+offset_right = 288.0
+offset_bottom = -133.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ORBIT HOPPER"
+label_settings = SubResource("LabelSettings_j7iax")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -105.0
+offset_right = 255.0
+offset_bottom = -20.0
+grow_vertical = 0
+texture_normal = ExtResource("2_t3ooo")
+texture_pressed = ExtResource("3_j7iax")
+texture_hover = ExtResource("3_j7iax")
+
+[node name="CreditsButton2" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 247.0
+offset_top = -105.0
+offset_right = 483.0
+offset_bottom = -20.0
+grow_vertical = 0
+texture_normal = ExtResource("2_t3ooo")
+texture_pressed = ExtResource("3_j7iax")
+texture_hover = ExtResource("3_j7iax")
+
+[node name="CreditsButton3" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 475.0
+offset_top = -105.0
+offset_right = 711.0
+offset_bottom = -20.0
+grow_vertical = 0
+texture_normal = ExtResource("2_t3ooo")
+texture_pressed = ExtResource("3_j7iax")
+texture_hover = ExtResource("3_j7iax")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("3_t3ooo")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
