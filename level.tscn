@@ -1,59 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://85y3qpeduac8"]
+[gd_scene load_steps=6 format=3 uid="uid://85y3qpeduac8"]
 
 [ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="2_vonw3"]
-[ext_resource type="PackedScene" uid="uid://kmnfya5mv64u" path="res://Planet.tscn" id="4_0b4ue"]
-[ext_resource type="Script" uid="uid://cgt4fk1uhlwrr" path="res://Scripts/black_hole.gd" id="4_f2txt"]
+[ext_resource type="PackedScene" uid="uid://d3sckrvivqlju" path="res://BlackHole.tscn" id="4_f2txt"]
 [ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ainy"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_0b4ue"]
-material = SubResource("StandardMaterial3D_1ainy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f2txt"]
-lifetime_randomness = 0.16
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 0.0
-emission_ring_radius = 50.0
-emission_ring_inner_radius = 50.0
-emission_ring_cone_angle = 90.0
-spread = 8.203
-orbit_velocity_min = 0.0140001
-orbit_velocity_max = 0.0720001
-radial_velocity_min = -2.23517e-05
-radial_velocity_max = 28.67
-gravity = Vector3(0, 0, 0)
-scale_min = 0.0
-scale_max = 4.55
-color = Color(0, 0, 0, 1)
-turbulence_noise_strength = 15.8
-turbulence_noise_scale = 5.241
-
-[sub_resource type="Curve" id="Curve_0b4ue"]
-_data = [Vector2(0, 0), 0.0, 3.56298, 0, 0, Vector2(0.489627, 0.977528), -0.0541573, -0.0541573, 0, 0, Vector2(1, 0.0224719), -3.44637, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_f2txt"]
-curve = SubResource("Curve_0b4ue")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6hdu"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 0.0
-emission_ring_radius = 50.0
-emission_ring_inner_radius = 15.37
-emission_ring_cone_angle = 90.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -54.47
-radial_accel_max = -37.99
-color = Color(0.840731, 0.836839, 0.907044, 1)
-alpha_curve = SubResource("CurveTexture_f2txt")
 
 [node name="Space" type="Node"]
 script = ExtResource("1_1ainy")
@@ -72,55 +23,39 @@ texture_filter = 1
 texture = ExtResource("1_oi3di")
 offset = Vector2(943, 999.5)
 
-[node name="BlackHole" type="Node2D" parent="."]
-position = Vector2(380, 316)
-scale = Vector2(0.218516, 0.218516)
-script = ExtResource("4_f2txt")
-growth_rate = Vector2(0.1, 0.1)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="BlackHole"]
-self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(103.713, 103.713)
-mesh = SubResource("SphereMesh_0b4ue")
-metadata/_edit_lock_ = true
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="BlackHole"]
-amount = 493
-lifetime = 0.79
-process_material = SubResource("ParticleProcessMaterial_f2txt")
-metadata/_edit_lock_ = true
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="BlackHole"]
-visible = false
-amount = 168
-lifetime = 0.89
-process_material = SubResource("ParticleProcessMaterial_n6hdu")
-metadata/_edit_lock_ = true
-
-[node name="Timer" type="Timer" parent="BlackHole"]
-
-[node name="Planet2" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(891, 365)
-scale = Vector2(1.886, 1.886)
-
-[node name="Planet3" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(641, 403)
-
-[node name="Planet4" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(170, 131)
-
-[node name="Planet5" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(561, 205)
-
-[node name="Planet6" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(967, 115)
-
-[node name="Planet7" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(1032, 554)
-
-[node name="Planet8" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(289, 502)
+[node name="BlackHole" parent="." instance=ExtResource("4_f2txt")]
+position = Vector2(422, 248)
 
 [node name="Ship" parent="." instance=ExtResource("2_vonw3")]
 position = Vector2(504, 363)
 rotation = 1.61664
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 35.0
+offset_right = 696.0
+offset_bottom = 58.0
+text = "! -- EVENT HORIZON IMMINENT -- !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 69.0
+offset_right = 613.0
+offset_bottom = 92.0
+text = ">>> T - 120 <<<"
+horizontal_alignment = 1
+vertical_alignment = 1

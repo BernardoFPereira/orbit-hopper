@@ -4,7 +4,7 @@ class_name Player
 @export var orbit_target: Node2D
 @export var speed := 200
 
-@onready var timer: Timer = $Timer
+@onready var camera: Camera2D = $"../Camera2D"
 
 const  WIDTH := 1886
 const  HEIGHT := 1999
@@ -16,12 +16,17 @@ enum States {
 	Flying,
 	Dead,
 }
+
 func set_state(new_state) -> void:
 	match new_state:
+		States.Orbit:
+			camera.target = orbit_target
 		States.Dead:
+			camera.target = self
 			set_collision_layer_value(2, 0)
 		_:
-			pass
+			camera.target = self
+	
 	state = new_state
 
 var state: States = States.Flying
@@ -47,7 +52,6 @@ func _process(delta: float) -> void:
 				rotation += PI
 			else:
 				look_at(orbit_target.global_position)
-			#look_at(orbit_target.global_position)
 			
 		States.Flying:
 			if orbit_clockwise: 
@@ -61,7 +65,12 @@ func _process(delta: float) -> void:
 					last_orbit = null
 			
 		States.Dead:
+			var dead_fx = preload("res://megaplosion.tscn").instantiate()
+			
 			if get_slide_collision_count() > 0:
+				dead_fx.global_transform = global_transform
+				dead_fx.emitting = true
+				add_sibling(dead_fx)
 				call_deferred("queue_free")
 			pass
 		
@@ -97,7 +106,7 @@ func handle_input(delta):
 			pass
 
 func check_orbit_side(target_pos: Vector2) -> ContactDir:
-	# Get the spaceship's forward direction (assuming -y is forward)
+	# Get the spaceship's forward direction (assumes -y is forward)
 	var forward = -transform.y.normalized()
 	var target_dir = global_position.direction_to(target_pos)
 	
@@ -106,7 +115,7 @@ func check_orbit_side(target_pos: Vector2) -> ContactDir:
 	var angle_degrees = rad_to_deg(acos(dot))
 	
 	# If angle is small, target is in front
-	if angle_degrees < 20.0:
+	if angle_degrees < 18.0:
 		return ContactDir.FRONT
 		
 	# Otherwise, check right/left using cross product
