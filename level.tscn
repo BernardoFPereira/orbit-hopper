@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://85y3qpeduac8"]
+[gd_scene load_steps=13 format=3 uid="uid://85y3qpeduac8"]
 
+[ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://kmnfya5mv64u" path="res://Planet.tscn" id="4_0b4ue"]
-[ext_resource type="Script" uid="uid://cgt4fk1uhlwrr" path="res://black_hole.gd" id="4_f2txt"]
-[ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://camera_2d.gd" id="5_f2txt"]
+[ext_resource type="Script" uid="uid://cgt4fk1uhlwrr" path="res://Scripts/black_hole.gd" id="4_f2txt"]
+[ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ainy"]
 albedo_color = Color(0, 0, 0, 1)
@@ -55,6 +56,7 @@ color = Color(0.840731, 0.836839, 0.907044, 1)
 alpha_curve = SubResource("CurveTexture_f2txt")
 
 [node name="Space" type="Node"]
+script = ExtResource("1_1ainy")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(493, 372)

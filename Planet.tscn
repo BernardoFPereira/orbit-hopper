@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://kmnfya5mv64u"]
 
-[ext_resource type="Script" uid="uid://dmtexvf0q30n3" path="res://planet.gd" id="1_2hiue"]
+[ext_resource type="Script" uid="uid://dmtexvf0q30n3" path="res://Scripts/planet.gd" id="1_2hiue"]
 [ext_resource type="Texture2D" uid="uid://dkpykdud04504" path="res://Assets/Planets/Blue.png" id="2_8g7i6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f2txt"]
@@ -21,7 +21,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitArea"]
 shape = SubResource("CircleShape2D_f2txt")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance" type="MeshInstance2D" parent="."]
 position = Vector2(0.484124, 0.484131)
 scale = Vector2(57.0317, 57.0317)
 mesh = SubResource("QuadMesh_485rr")

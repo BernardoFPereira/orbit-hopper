@@ -17,6 +17,11 @@ enum States {
 	Dead,
 }
 func set_state(new_state) -> void:
+	match new_state:
+		States.Dead:
+			set_collision_layer_value(2, 0)
+		_:
+			pass
 	state = new_state
 
 var state: States = States.Flying
@@ -37,7 +42,6 @@ func _process(delta: float) -> void:
 	match state:
 		States.Orbit:
 			velocity = Vector2.ZERO
-			
 			if orbit_target.orbit_speed < 0:
 				look_at(orbit_target.global_position)
 				rotation += PI
@@ -57,6 +61,8 @@ func _process(delta: float) -> void:
 					last_orbit = null
 			
 		States.Dead:
+			if get_slide_collision_count() > 0:
+				call_deferred("queue_free")
 			pass
 		
 	handle_input(delta)
@@ -84,11 +90,9 @@ func handle_input(delta):
 			
 		States.Flying:
 			if Input.is_action_pressed("steer"):
-				# Move sligtly to mouse position
+				# This doesn't *really* work, but it works. Controls are damaged!
 				var mouse_pos = get_local_mouse_position()
-				velocity += mouse_pos * delta
-				print("vel: %v", velocity)
-				print(mouse_pos)
+				velocity += mouse_pos * (delta * 16)
 		_:
 			pass
 
