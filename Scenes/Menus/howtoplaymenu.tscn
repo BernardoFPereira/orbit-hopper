@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://coqbs1m8nx0nl"]
+
+[ext_resource type="Script" uid="uid://bs52glslmy84u" path="res://Scripts/start_menu.gd" id="1_1epdc"]
+[ext_resource type="Texture2D" uid="uid://den2cv8ksi11b" path="res://Assets/Menu/Button2.png" id="3_yt47f"]
+[ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="4_lirin"]
+[ext_resource type="FontFile" uid="uid://bo82eyelcojtg" path="res://Assets/BLADRMF_.TTF" id="5_n6f83"]
+[ext_resource type="Texture2D" uid="uid://lxeji1lt1wnp" path="res://Assets/bg.jpg" id="6_vdnar"]
+[ext_resource type="Texture2D" uid="uid://405sdgiushcm" path="res://Assets/Menu/9Patch MenuTP.png" id="6_yt47f"]
+[ext_resource type="Texture2D" uid="uid://dkpykdud04504" path="res://Assets/Planets/Blue.png" id="7_lirin"]
+[ext_resource type="Texture2D" uid="uid://bf42jafa4h3er" path="res://Assets/Ships/pilotexample.png" id="8_n6f83"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kj465"]
+font = ExtResource("5_n6f83")
+font_size = 24
+font_color = Color(0.263315, 0.178551, 0.291426, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1epdc")
+metadata/_edit_lock_ = true
+
+[node name="ReturntoMainMenuButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -102.0
+offset_right = 261.0
+offset_bottom = -17.0
+grow_vertical = 0
+texture_normal = ExtResource("3_yt47f")
+texture_pressed = ExtResource("4_lirin")
+texture_hover = ExtResource("4_lirin")
+
+[node name="RMainMenuLabel" type="Label" parent="ReturntoMainMenuButton"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 25.0
+offset_right = 189.0
+offset_bottom = 53.0
+text = "main menu"
+label_settings = SubResource("LabelSettings_kj465")
+horizontal_alignment = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground"]
+repeat_size = Vector2(1151, 0)
+autoscroll = Vector2(24, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+texture_repeat = 2
+texture = ExtResource("6_vdnar")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+metadata/_edit_lock_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -309.0
+offset_right = 383.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_yt47f")
+patch_margin_left = 164
+patch_margin_top = 64
+patch_margin_right = 164
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -234.0
+offset_right = 351.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.000384522
+theme_override_colors/default_color = Color(1.58831e-06, 0.619119, 0.547649, 1)
+theme_override_colors/font_shadow_color = Color(3.00817e-08, 0.281997, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_n6f83")
+text = "controls:
+
+hold left mouse click to build speed in orbit around a planet
+
+
+
+
+
+
+
+release to move somewhere to exit the orbit of a planet
+
+
+
+
+
+
+
+right mouse click + aim with mouse to boost in the direction of your mouse cursor, but the thruster has a kick back, so watch out!"
+
+[node name="Blue" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(392, 165)
+texture = ExtResource("7_lirin")
+
+[node name="Blue2" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(389, 321)
+texture = ExtResource("7_lirin")
+
+[node name="Pilotexample" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(410, 111)
+rotation = 0.340495
+texture = ExtResource("8_n6f83")
+
+[node name="Pilotexample2" type="Sprite2D" parent="NinePatchRect"]
+position = Vector2(464, 347)
+rotation = 0.943356
+texture = ExtResource("8_n6f83")
+
+[connection signal="pressed" from="ReturntoMainMenuButton" to="." method="_on_returnto_main_menu_button_pressed"]
