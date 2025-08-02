@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://kmnfya5mv64u"]
+[gd_scene load_steps=6 format=3 uid="uid://kmnfya5mv64u"]
 
-[ext_resource type="Script" uid="uid://dmtexvf0q30n3" path="res://planet.gd" id="1_2hiue"]
+[ext_resource type="Script" uid="uid://dmtexvf0q30n3" path="res://Scripts/planet.gd" id="1_ej51v"]
+[ext_resource type="Texture2D" uid="uid://dkpykdud04504" path="res://Assets/Planets/Blue.png" id="2_r86au"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f2txt"]
 radius = 54.3415
 
-[sub_resource type="SphereMesh" id="SphereMesh_0b4ue"]
+[sub_resource type="QuadMesh" id="QuadMesh_485rr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oi3di"]
 radius = 28.2843
 
 [node name="Planet" type="StaticBody2D"]
-script = ExtResource("1_2hiue")
+script = ExtResource("1_ej51v")
 
 [node name="OrbitArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -20,10 +21,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitArea"]
 shape = SubResource("CircleShape2D_f2txt")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(0, 6.91982e-06)
-scale = Vector2(56.0635, 56.0635)
-mesh = SubResource("SphereMesh_0b4ue")
+[node name="MeshInstance" type="MeshInstance2D" parent="."]
+position = Vector2(0.484124, 0.484131)
+scale = Vector2(57.0317, 57.0317)
+mesh = SubResource("QuadMesh_485rr")
+texture = ExtResource("2_r86au")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oi3di")

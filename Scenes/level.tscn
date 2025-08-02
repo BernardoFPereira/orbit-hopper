@@ -1,0 +1,143 @@
+[gd_scene load_steps=11 format=3 uid="uid://85y3qpeduac8"]
+
+[ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://Scripts/level.gd" id="1_1ainy"]
+[ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://Assets/bg.jpg" id="1_oi3di"]
+[ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Scenes/Player.tscn" id="2_vonw3"]
+[ext_resource type="PackedScene" uid="uid://d3sckrvivqlju" path="res://Scenes/BlackHole.tscn" id="4_f2txt"]
+[ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
+[ext_resource type="Texture2D" uid="uid://405sdgiushcm" path="res://Assets/Menu/9Patch MenuTP.png" id="6_1ainy"]
+[ext_resource type="FontFile" uid="uid://cw1yhatrnpysy" path="res://Assets/BLADRMF_.TTF" id="6_km5ld"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2t4f"]
+font = ExtResource("6_km5ld")
+font_size = 18
+font_color = Color(0.85687, 0.680293, 0.399681, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8cye3"]
+font = ExtResource("6_km5ld")
+font_size = 18
+font_color = Color(0.816533, 0.290501, 0.263621, 1)
+
+[sub_resource type="Environment" id="Environment_1ainy"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_strength = 0.97
+glow_bloom = 1.0
+glow_blend_mode = 1
+
+[node name="Space" type="Node"]
+process_mode = 3
+script = ExtResource("1_1ainy")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(493, 372)
+limit_left = 0
+limit_top = 0
+limit_right = 1886
+limit_bottom = 1999
+script = ExtResource("5_f2txt")
+target = NodePath("../Ship")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_oi3di")
+offset = Vector2(943, 999.5)
+
+[node name="BlackHole" parent="." instance=ExtResource("4_f2txt")]
+position = Vector2(422, 248)
+
+[node name="Ship" parent="." instance=ExtResource("2_vonw3")]
+position = Vector2(504, 363)
+rotation = 1.61664
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -193.5
+offset_top = 61.0
+offset_right = 193.5
+offset_bottom = 84.0
+grow_horizontal = 2
+text = "! -- event horizon imminent -- !"
+label_settings = SubResource("LabelSettings_i2t4f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLeft" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.0
+offset_top = 89.0
+offset_right = 97.0
+offset_bottom = 112.0
+grow_horizontal = 2
+text = ">>> T - 120 <<<"
+label_settings = SubResource("LabelSettings_8cye3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer/HUD"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -201.0
+offset_right = 206.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1ainy")
+patch_margin_left = 164
+patch_margin_top = 64
+patch_margin_right = 164
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="ContinueButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContinueButton2" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuitButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1ainy")
