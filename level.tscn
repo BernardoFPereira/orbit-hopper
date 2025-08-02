@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://85y3qpeduac8"]
+[gd_scene load_steps=7 format=3 uid="uid://85y3qpeduac8"]
 
 [ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://d3sckrvivqlju" path="res://BlackHole.tscn" id="4_f2txt"]
 [ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f2txt"]
 
 [node name="Space" type="Node"]
 script = ExtResource("1_1ainy")
@@ -30,7 +32,9 @@ position = Vector2(422, 248)
 position = Vector2(504, 363)
 rotation = 1.61664
 
-[node name="HUD" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +44,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="HUD"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 0
 offset_left = 435.0
 offset_top = 35.0
@@ -50,7 +54,7 @@ text = "! -- EVENT HORIZON IMMINENT -- !"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD"]
+[node name="Label2" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 0
 offset_left = 499.0
 offset_top = 69.0
@@ -59,3 +63,50 @@ offset_bottom = 92.0
 text = ">>> T - 120 <<<"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = -206.0
+offset_right = 167.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/Panel"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 336.0
+offset_right = 159.0
+offset_bottom = 368.0
+texture_normal = SubResource("PlaceholderTexture2D_f2txt")
+texture_pressed = SubResource("PlaceholderTexture2D_f2txt")
+texture_hover = SubResource("PlaceholderTexture2D_f2txt")
+texture_disabled = SubResource("PlaceholderTexture2D_f2txt")
+texture_focused = SubResource("PlaceholderTexture2D_f2txt")
+
+[node name="QuitButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/Panel"]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 336.0
+offset_right = 262.0
+offset_bottom = 368.0

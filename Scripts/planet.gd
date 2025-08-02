@@ -5,38 +5,43 @@ extends StaticBody2D
 @onready var mesh_instance: MeshInstance2D = $MeshInstance
 
 const BLUE = preload("res://Assets/Planets/Blue.png")
-const CUBE = preload("res://Assets/Planets/Cube.png")
-const GAS_2 = preload("res://Assets/Planets/Gas2.png")
-const GAS = preload("res://Assets/Planets/Gas.png")
 const GREEN = preload("res://Assets/Planets/Green.png")
-const HALO = preload("res://Assets/Planets/Halo.png")
 const SATELLITE = preload("res://Assets/Planets/Satellite.png")
+const GAS = preload("res://Assets/Planets/Gas.png")
+const GAS_2 = preload("res://Assets/Planets/Gas2.png")
+const DATHO = preload("res://Assets/Planets/Datho.png")
+const KASHYI = preload("res://Assets/Planets/Kashyi.png")
+const NEFO = preload("res://Assets/Planets/Nefo.png")
+
+const HALO = preload("res://Assets/Planets/Halo.png")
+const CUBE = preload("res://Assets/Planets/Cube.png")
+const SOMEWHERE = preload("res://Assets/Ships/Somewhere.png")
+
 const SOL = preload("res://Assets/Planets/Sol.png")
 const BLACK_HOLE = preload("res://Assets/Planets/BlackHole.png")
 
 @export var textures := [
 	BLUE,
-	GAS_2,
-	GAS,
 	GREEN,
 	SATELLITE,
+	GAS,
+	GAS_2,
+	DATHO,
+	KASHYI,
+	NEFO,
 	SOL,
-	#BLACK_HOLE,
 	]
 
 @export var textures_special := [
 	CUBE,
 	HALO,
+	SOMEWHERE,
 ]
-	
+
 var player: CharacterBody2D
 var orbit_speed := 2.0
 var special := false
 
-#func _draw() -> void:
-	#draw_circle(Vector2.ZERO, 200, Color.RED, false, 2.0)
-	#pass
-	
 func _ready() -> void:
 	var rand_idx: int
 	
