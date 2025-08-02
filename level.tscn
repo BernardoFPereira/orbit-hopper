@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 [gd_scene load_steps=7 format=3 uid="uid://85y3qpeduac8"]
+=======
+[gd_scene load_steps=14 format=3 uid="uid://85y3qpeduac8"]
+>>>>>>> sparkle2
 
 [ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://d3sckrvivqlju" path="res://BlackHole.tscn" id="4_f2txt"]
 [ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
+[ext_resource type="PackedScene" uid="uid://bfqc8g3otq8tk" path="res://Particulas_Igor/TelaGlow.tscn" id="7_n6hdu"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f2txt"]
 
@@ -32,6 +37,7 @@ position = Vector2(422, 248)
 position = Vector2(504, 363)
 rotation = 1.61664
 
+<<<<<<< HEAD
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
@@ -110,3 +116,6 @@ offset_left = 194.0
 offset_top = 336.0
 offset_right = 262.0
 offset_bottom = 368.0
+=======
+[node name="WorldEnvironment" parent="." instance=ExtResource("7_n6hdu")]
+>>>>>>> sparkle2
