@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://kmnfya5mv64u"]
 
-[ext_resource type="Script" uid="uid://dmtexvf0q30n3" path="res://Scripts/planet.gd" id="1_2hiue"]
-[ext_resource type="Texture2D" uid="uid://dkpykdud04504" path="res://Assets/Planets/Blue.png" id="2_8g7i6"]
+[ext_resource type="Script" uid="uid://dmtexvf0q30n3" path="res://Scripts/planet.gd" id="1_ej51v"]
+[ext_resource type="Texture2D" uid="uid://dkpykdud04504" path="res://Assets/Planets/Blue.png" id="2_r86au"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f2txt"]
 radius = 54.3415
@@ -12,7 +12,7 @@ radius = 54.3415
 radius = 28.2843
 
 [node name="Planet" type="StaticBody2D"]
-script = ExtResource("1_2hiue")
+script = ExtResource("1_ej51v")
 
 [node name="OrbitArea" type="Area2D" parent="."]
 collision_layer = 4
@@ -25,7 +25,7 @@ shape = SubResource("CircleShape2D_f2txt")
 position = Vector2(0.484124, 0.484131)
 scale = Vector2(57.0317, 57.0317)
 mesh = SubResource("QuadMesh_485rr")
-texture = ExtResource("2_8g7i6")
+texture = ExtResource("2_r86au")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oi3di")

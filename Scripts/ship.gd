@@ -32,6 +32,7 @@ func set_state(new_state) -> void:
 var state: States = States.Flying
 var last_orbit: Node2D
 var orbit_clockwise := true
+var just_spawned := true
 
 func _process(delta: float) -> void:
 	if global_position.x > WIDTH + 50:
@@ -65,7 +66,7 @@ func _process(delta: float) -> void:
 					last_orbit = null
 			
 		States.Dead:
-			var dead_fx = preload("res://megaplosion.tscn").instantiate()
+			var dead_fx = preload("res://Particulas_Igor/ship_explosion.tscn").instantiate()
 			
 			if get_slide_collision_count() > 0:
 				dead_fx.global_transform = global_transform
@@ -106,6 +107,10 @@ func handle_input(delta):
 			pass
 
 func check_orbit_side(target_pos: Vector2) -> ContactDir:
+	if just_spawned:
+		just_spawned = false
+		return ContactDir.RIGHT
+		
 	# Get the spaceship's forward direction (assumes -y is forward)
 	var forward = -transform.y.normalized()
 	var target_dir = global_position.direction_to(target_pos)

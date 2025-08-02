@@ -1,11 +1,27 @@
 extends Node
 
+@onready var black_hole: Node2D = $BlackHole
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
+@onready var camera: Camera2D = $Camera2D
+@onready var time_left_label: Label = $CanvasLayer/HUD/TimeLeft
+
 const  WIDTH := 1886
 const  HEIGHT := 1999
+#const TIMER_FMT := ">>> T - % <<<"
+
+var time_left := 120.0
 
 func _ready() -> void:
-	var accepted_planet_data = generate_planet_spawn_data(20)
+	var accepted_planet_data = generate_planet_spawn_data(18)
 	generate_planets(accepted_planet_data)
+
+func _process(delta) -> void:
+	time_left -= delta
+	world_environment.environment.glow_intensity = 0.8 * black_hole.scale.x
+	if time_left < 110:
+		camera.shake(black_hole.scale.x * 0.5)
+	
+	time_left_label.text = ">>> T - %0.2f <<<" % time_left
 
 func generate_planet_spawn_data(amount: int) -> Array:
 	var spawn_point: Vector2
@@ -28,7 +44,7 @@ func generate_planet_spawn_data(amount: int) -> Array:
 	return accepted_planet_data
 
 func generate_planets(accepted_planet_data: Array) -> void:
-	var planet_obj = preload("res://Planet.tscn")
+	var planet_obj = preload("res://Scenes/Planet.tscn")
 	var special_planets := 0
 	
 	for e in accepted_planet_data:

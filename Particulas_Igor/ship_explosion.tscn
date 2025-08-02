@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3tf3mgbei5cf"]
+[gd_scene load_steps=19 format=3 uid="uid://cvxnh0sepgd0a"]
 
-[ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="1_e3bqc"]
 [ext_resource type="Texture2D" uid="uid://bfvvqvusax8ni" path="res://Particulas_Igor/Sprite-0002.png" id="2_gy8em"]
 
 [sub_resource type="Curve" id="Curve_1yea0"]
@@ -55,14 +54,63 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_0cwf0")
 scale_over_velocity_max = 1.0
 color_ramp = SubResource("GradientTexture1D_2sihw")
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
 
-[node name="ShipExplosion" type="Node2D"]
+[sub_resource type="Curve" id="Curve_jgil1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.726619, 0.92844), -0.296036, -0.296036, 0, 0, Vector2(1, 0), -7.39632, 0.0, 0, 0]
+point_count = 3
 
-[node name="Ship" parent="." instance=ExtResource("1_e3bqc")]
+[sub_resource type="CurveTexture" id="CurveTexture_e3bqc"]
+curve = SubResource("Curve_jgil1")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[sub_resource type="Curve" id="Curve_gy8em"]
+_data = [Vector2(0, 0.803211), 0.0, 0.753545, 0, 0, Vector2(1, 0.499083), -0.24867, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1yea0"]
+curve = SubResource("Curve_gy8em")
+
+[sub_resource type="CurveTexture" id="CurveTexture_b6eef"]
+
+[sub_resource type="Curve" id="Curve_2sihw"]
+_data = [Vector2(0, 1), 0.0, -10.9415, 0, 0, Vector2(0.160671, 0.248624), -1.21443, -1.21443, 0, 0, Vector2(0.702638, 0.0100918), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6fpmk"]
+curve = SubResource("Curve_2sihw")
+
+[sub_resource type="Curve" id="Curve_0cwf0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.503597, 0.89266), -0.683842, -0.683842, 0, 0, Vector2(1, 0.505046), -0.830577, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bx2q6"]
+curve = SubResource("Curve_0cwf0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v6wne"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+angular_velocity_min = 25.32
+angular_velocity_max = 170.9
+angular_velocity_curve = SubResource("CurveTexture_1yea0")
+radial_velocity_min = 136.06
+radial_velocity_max = 163.27
+radial_velocity_curve = SubResource("CurveTexture_6fpmk")
+gravity = Vector3(0, 0, 0)
+radial_accel_curve = SubResource("CurveTexture_b6eef")
+scale_min = 0.3
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_bx2q6")
+color = Color(0.804381, 0.46434, 0.432114, 1)
+alpha_curve = SubResource("CurveTexture_e3bqc")
+hue_variation_min = -0.06
+hue_variation_max = 0.07
+
+[node name="MainExplosion" type="GPUParticles2D"]
 emitting = false
 amount = 30
+sub_emitter = NodePath("Debris")
 texture = ExtResource("2_gy8em")
 lifetime = 0.5
 one_shot = true
@@ -70,3 +118,9 @@ speed_scale = 0.6
 explosiveness = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_bx2q6")
+
+[node name="Debris" type="GPUParticles2D" parent="."]
+amount = 12
+lifetime = 3.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_v6wne")
