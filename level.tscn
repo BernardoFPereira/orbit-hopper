@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://85y3qpeduac8"]
+[gd_scene load_steps=12 format=3 uid="uid://85y3qpeduac8"]
 
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://dagwshkql0nff" path="res://Player.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://kmnfya5mv64u" path="res://Planet.tscn" id="4_0b4ue"]
 [ext_resource type="Script" uid="uid://cgt4fk1uhlwrr" path="res://black_hole.gd" id="4_f2txt"]
+[ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://camera_2d.gd" id="5_f2txt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ainy"]
 albedo_color = Color(0, 0, 0, 1)
@@ -53,25 +54,24 @@ radial_accel_max = -37.99
 color = Color(0.840731, 0.836839, 0.907044, 1)
 alpha_curve = SubResource("CurveTexture_f2txt")
 
-[node name="Node" type="Node"]
+[node name="Space" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(493, 372)
+limit_left = 0
+limit_top = 0
+limit_right = 1886
+limit_bottom = 1999
+script = ExtResource("5_f2txt")
+target = NodePath("../Ship")
 
 [node name="Bg" type="Sprite2D" parent="."]
-position = Vector2(577.5, 340.028)
-scale = Vector2(1.52887, 1.51208)
+texture_filter = 1
 texture = ExtResource("1_oi3di")
-
-[node name="Ship" parent="." instance=ExtResource("2_vonw3")]
-position = Vector2(202, 126)
-rotation = 2.52042
-
-[node name="Planet2" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(760, 313)
-
-[node name="Planet3" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(423, 412)
+offset = Vector2(943, 999.5)
 
 [node name="BlackHole" type="Node2D" parent="."]
-position = Vector2(194, 446)
+position = Vector2(380, 316)
 scale = Vector2(0.218516, 0.218516)
 script = ExtResource("4_f2txt")
 growth_rate = Vector2(0.1, 0.1)
@@ -80,16 +80,45 @@ growth_rate = Vector2(0.1, 0.1)
 self_modulate = Color(0, 0, 0, 1)
 scale = Vector2(103.713, 103.713)
 mesh = SubResource("SphereMesh_0b4ue")
+metadata/_edit_lock_ = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="BlackHole"]
 amount = 493
 lifetime = 0.79
 process_material = SubResource("ParticleProcessMaterial_f2txt")
+metadata/_edit_lock_ = true
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="BlackHole"]
 visible = false
 amount = 168
 lifetime = 0.89
 process_material = SubResource("ParticleProcessMaterial_n6hdu")
+metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="BlackHole"]
+
+[node name="Planet2" parent="." instance=ExtResource("4_0b4ue")]
+position = Vector2(891, 365)
+scale = Vector2(1.886, 1.886)
+
+[node name="Planet3" parent="." instance=ExtResource("4_0b4ue")]
+position = Vector2(641, 403)
+
+[node name="Planet4" parent="." instance=ExtResource("4_0b4ue")]
+position = Vector2(170, 131)
+
+[node name="Planet5" parent="." instance=ExtResource("4_0b4ue")]
+position = Vector2(561, 205)
+
+[node name="Planet6" parent="." instance=ExtResource("4_0b4ue")]
+position = Vector2(967, 115)
+
+[node name="Planet7" parent="." instance=ExtResource("4_0b4ue")]
+position = Vector2(1032, 554)
+
+[node name="Planet8" parent="." instance=ExtResource("4_0b4ue")]
+position = Vector2(289, 502)
+
+[node name="Ship" parent="." instance=ExtResource("2_vonw3")]
+position = Vector2(504, 363)
+rotation = 1.61664

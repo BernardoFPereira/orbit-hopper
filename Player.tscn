@@ -31,6 +31,10 @@ collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_kpjcp")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-8, -4, -2, -11, 2, -11, 8, -4, 8, 2, 11, 6, 6, 11, -6, 11, -11, 6, -8, 2)
 
@@ -40,10 +44,6 @@ scale = Vector2(0.702928, 0.702928)
 texture = ExtResource("2_kne1u")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.6
-one_shot = true
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
 position = Vector2(-9, 10)
