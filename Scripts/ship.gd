@@ -6,6 +6,11 @@ class_name Player
 
 @onready var camera: Camera2D = $"../Camera2D"
 
+#Fazendo Música - Código do Igor
+#Referenciando a música do jogo
+@onready var hyperSpace_effect = $AudioHyperSpace
+@onready var Audio_morte = $AudioMorte #Referenciado mas não emplementado(não sei onde por para tocar)
+
 const  WIDTH := 1886
 const  HEIGHT := 1999
 
@@ -94,6 +99,7 @@ func handle_input(delta):
 				orbit_target.orbit_speed = 2.0
 				last_orbit = orbit_target
 				orbit_target = null
+				hyperSpace_effect.play() #Tocando efeito de hyper espaço
 				
 				set_state(States.Flying)
 			

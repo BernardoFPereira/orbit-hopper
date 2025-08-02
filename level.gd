@@ -3,9 +3,14 @@ extends Node
 const  WIDTH := 1886
 const  HEIGHT := 1999
 
+#Fazendo Música - Código do Igor
+#Referenciando a música do jogo
+@onready var game_music = $GameMusic
+
 func _ready() -> void:
 	var accepted_planet_data = generate_planet_spawn_data(20)
 	generate_planets(accepted_planet_data)
+	game_music.play() #Tocando a música do jogo
 
 func generate_planet_spawn_data(amount: int) -> Array:
 	var spawn_point: Vector2

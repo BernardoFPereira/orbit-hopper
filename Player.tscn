@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dagwshkql0nff"]
+[gd_scene load_steps=11 format=3 uid="uid://dagwshkql0nff"]
 
 [ext_resource type="Script" uid="uid://ns0rrqbvq6u4" path="res://Scripts/ship.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://cahhet26aq4ao" path="res://pilot.png" id="2_kne1u"]
 [ext_resource type="Texture2D" uid="uid://bfvvqvusax8ni" path="res://Particulas_Igor/Sprite-0002.png" id="3_kne1u"]
+[ext_resource type="AudioStream" uid="uid://xyg7c540eoeh" path="res://Audio/Effects/aud_hyperSpace.wav" id="4_e80uo"]
+[ext_resource type="AudioStream" uid="uid://cu27sn6khwbec" path="res://Audio/Effects/aud_morte.wav" id="5_cxr5p"]
 
 [sub_resource type="Gradient" id="Gradient_kne1u"]
 offsets = PackedFloat32Array(0.0147059, 0.352941, 0.696078, 1)
@@ -62,3 +64,9 @@ lifetime = 0.47
 speed_scale = 2.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_kpjcp")
+
+[node name="AudioHyperSpace" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e80uo")
+
+[node name="AudioMorte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cxr5p")
