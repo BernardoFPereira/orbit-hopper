@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://85y3qpeduac8"]
+[gd_scene load_steps=14 format=3 uid="uid://85y3qpeduac8"]
 
 [ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://bg.jpg" id="1_oi3di"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://kmnfya5mv64u" path="res://Planet.tscn" id="4_0b4ue"]
 [ext_resource type="Script" uid="uid://cgt4fk1uhlwrr" path="res://Scripts/black_hole.gd" id="4_f2txt"]
 [ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
+[ext_resource type="PackedScene" uid="uid://bfqc8g3otq8tk" path="res://Particulas_Igor/TelaGlow.tscn" id="7_n6hdu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ainy"]
 albedo_color = Color(0, 0, 0, 1)
@@ -124,3 +125,5 @@ position = Vector2(289, 502)
 [node name="Ship" parent="." instance=ExtResource("2_vonw3")]
 position = Vector2(504, 363)
 rotation = 1.61664
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("7_n6hdu")]
