@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://coqbs1m8nx0nl"]
+[gd_scene load_steps=8 format=3 uid="uid://dqr4ffaqyyutq"]
 
-[ext_resource type="Texture2D" uid="uid://dl5bhgs3nulof" path="res://Assets/Menu/Logo.png" id="1_iclcp"]
-[ext_resource type="Script" uid="uid://bs52glslmy84u" path="res://Scripts/start_menu.gd" id="1_kj465"]
-[ext_resource type="Texture2D" uid="uid://den2cv8ksi11b" path="res://Assets/Menu/Button2.png" id="2_t3ooo"]
-[ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="3_j7iax"]
-[ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://Assets/bg.jpg" id="3_t3ooo"]
-[ext_resource type="FontFile" uid="uid://cw1yhatrnpysy" path="res://Assets/BLADRMF_.TTF" id="4_iclcp"]
+[ext_resource type="Script" uid="uid://bs52glslmy84u" path="res://Scripts/start_menu.gd" id="1_1epdc"]
+[ext_resource type="Texture2D" uid="uid://b535ljo3xpwof" path="res://Assets/Menu/Logo.png" id="2_i8f20"]
+[ext_resource type="Texture2D" uid="uid://den2cv8ksi11b" path="res://Assets/Menu/Button2.png" id="3_yt47f"]
+[ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="4_lirin"]
+[ext_resource type="FontFile" uid="uid://bo82eyelcojtg" path="res://Assets/BLADRMF_.TTF" id="5_n6f83"]
+[ext_resource type="Texture2D" uid="uid://lxeji1lt1wnp" path="res://Assets/bg.jpg" id="6_vdnar"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kj465"]
-font = ExtResource("4_iclcp")
+font = ExtResource("5_n6f83")
 font_size = 24
 font_color = Color(0.263315, 0.178551, 0.291426, 1)
 
@@ -19,13 +19,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kj465")
+script = ExtResource("1_1epdc")
 metadata/_edit_lock_ = true
 
 [node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(568, 235)
 scale = Vector2(1.53297, 1.53297)
-texture = ExtResource("1_iclcp")
+texture = ExtResource("2_i8f20")
 
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -40,9 +40,9 @@ offset_right = 118.0
 offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("2_t3ooo")
-texture_pressed = ExtResource("3_j7iax")
-texture_hover = ExtResource("3_j7iax")
+texture_normal = ExtResource("3_yt47f")
+texture_pressed = ExtResource("4_lirin")
+texture_hover = ExtResource("4_lirin")
 
 [node name="PlayLabel" type="Label" parent="PlayButton"]
 layout_mode = 0
@@ -63,9 +63,9 @@ offset_top = -102.0
 offset_right = 261.0
 offset_bottom = -17.0
 grow_vertical = 0
-texture_normal = ExtResource("2_t3ooo")
-texture_pressed = ExtResource("3_j7iax")
-texture_hover = ExtResource("3_j7iax")
+texture_normal = ExtResource("3_yt47f")
+texture_pressed = ExtResource("4_lirin")
+texture_hover = ExtResource("4_lirin")
 
 [node name="CreditsLabel" type="Label" parent="CreditsButton"]
 offset_left = 62.0
@@ -89,9 +89,9 @@ offset_right = 118.0
 offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("2_t3ooo")
-texture_pressed = ExtResource("3_j7iax")
-texture_hover = ExtResource("3_j7iax")
+texture_normal = ExtResource("3_yt47f")
+texture_pressed = ExtResource("4_lirin")
+texture_hover = ExtResource("4_lirin")
 
 [node name="QuitLabel" type="Label" parent="QuitButton"]
 offset_left = 78.0
@@ -111,7 +111,7 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
 texture_repeat = 2
-texture = ExtResource("3_t3ooo")
+texture = ExtResource("6_vdnar")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1152, 648)
