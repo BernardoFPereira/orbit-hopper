@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvxnh0sepgd0a"]
+[gd_scene load_steps=18 format=3 uid="uid://cvxnh0sepgd0a"]
 
 [ext_resource type="Texture2D" uid="uid://bfvvqvusax8ni" path="res://Particulas_Igor/Sprite-0002.png" id="2_gy8em"]
 
@@ -64,7 +64,13 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_1yea0"]
 curve = SubResource("Curve_gy8em")
 
+[sub_resource type="Curve" id="Curve_jgil1"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_b6eef"]
+curve = SubResource("Curve_jgil1")
 
 [sub_resource type="Curve" id="Curve_2sihw"]
 _data = [Vector2(0, 1), 0.0, -10.9415, 0, 0, Vector2(0.160671, 0.248624), -1.21443, -1.21443, 0, 0, Vector2(0.702638, 0.0100918), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

@@ -68,6 +68,7 @@ texture_pressed = ExtResource("3_j7iax")
 texture_hover = ExtResource("3_j7iax")
 
 [node name="CreditsLabel" type="Label" parent="CreditsButton"]
+layout_mode = 0
 offset_left = 62.0
 offset_top = 24.0
 offset_right = 179.0
@@ -94,6 +95,7 @@ texture_pressed = ExtResource("3_j7iax")
 texture_hover = ExtResource("3_j7iax")
 
 [node name="QuitLabel" type="Label" parent="QuitButton"]
+layout_mode = 0
 offset_left = 78.0
 offset_top = 24.0
 offset_right = 146.0
