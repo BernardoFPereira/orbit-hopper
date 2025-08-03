@@ -3,7 +3,9 @@ extends Node
 @onready var black_hole: Node2D = $BlackHole
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 @onready var camera: Camera2D = $Camera2D
+
 @onready var time_left_label: Label = $CanvasLayer/HUD/TimeLeft
+@onready var fuel_label: Label = $CanvasLayer/HUD/FuelLabel
 
 const  WIDTH := 1886
 const  HEIGHT := 1999
@@ -22,6 +24,7 @@ func _process(delta) -> void:
 		camera.shake(black_hole.scale.x * 0.5)
 	
 	time_left_label.text = ">>> T - %0.2f <<<" % time_left
+	fuel_label.text = "fuel cells: %s/5" % fuel_cells_collected
 
 func generate_planet_spawn_data(amount: int) -> Array:
 	var spawn_point: Vector2
@@ -59,27 +62,14 @@ func generate_planets(accepted_planet_data: Array) -> void:
 			planet.special = true
 			special_planets += 1
 		
+		# pegar 5 numeros aleatorios
+		# usar eles como index da lista de planetas
+		# set planet.contains_fuel = true
+		
 		self.add_child(planet)
 
-#func generate_stars_data(planets_data: Array, amount: int) -> Array:
-	#var spawn_point: Vector2
-	#var accepted_star_data := []
-	#
-	#while len(accepted_star_data) < amount:
-		#spawn_point = Vector2(randf_range(100, WIDTH - 100), randf_range(100, HEIGHT - 100))
-		#var planet_scale = randf_range(0.5, 2.5)
-		#
-		#var is_overlapping = false
-		#for pos in accepted_star_data:
-			#if Geometry2D.is_point_in_circle(spawn_point, pos[0], 200):
-				#print("NOT ALLOWED AT: %v" % spawn_point)
-				#is_overlapping = true
-				#break
-		#
-		#if !is_overlapping:
-			#accepted_star_data.append([spawn_point, planet_scale])
-		#
-	#return accepted_star_data
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()
 
-#func generate_stars() -> void:
-	#pass
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Menus/start_menu.tscn")

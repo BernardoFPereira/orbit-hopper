@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dagwshkql0nff"]
+[gd_scene load_steps=13 format=3 uid="uid://bhrdlh3h6ojve"]
 
 [ext_resource type="Script" uid="uid://ns0rrqbvq6u4" path="res://Scripts/ship.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://cahhet26aq4ao" path="res://Assets/pilot.png" id="2_kne1u"]
@@ -70,6 +70,11 @@ collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_kpjcp")
 
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+autostart = true
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-8, -4, -2, -11, 2, -11, 8, -4, 8, 2, 11, 6, 6, 11, -6, 11, -11, 6, -8, 2)
 
@@ -78,14 +83,6 @@ texture_filter = 1
 scale = Vector2(0.6875, 0.6875)
 sprite_frames = SubResource("SpriteFrames_nn08x")
 animation = &"flying"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-scale = Vector2(0.702928, 0.702928)
-texture = ExtResource("2_kne1u")
-region_enabled = true
-region_rect = Rect2(32, 0, 32, 32)
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
 position = Vector2(-9, 10)
@@ -108,3 +105,5 @@ lifetime = 0.47
 speed_scale = 2.0
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_kpjcp")
+
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

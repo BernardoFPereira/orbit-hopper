@@ -41,6 +41,7 @@ const BLACK_HOLE = preload("res://Assets/Planets/BlackHole.png")
 var player: CharacterBody2D
 var orbit_speed := 2.0
 var special := false
+var contain_fuel := false
 
 func _ready() -> void:
 	var rand_idx: int

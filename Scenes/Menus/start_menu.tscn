@@ -53,6 +53,32 @@ offset_bottom = 52.0
 text = "play"
 label_settings = SubResource("LabelSettings_kj465")
 
+[node name="HelpButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -261.0
+offset_top = -114.0
+offset_right = -25.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_t3ooo")
+texture_pressed = ExtResource("3_j7iax")
+texture_hover = ExtResource("3_j7iax")
+
+[node name="HelpLabel" type="Label" parent="HelpButton"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 24.0
+offset_right = 146.0
+offset_bottom = 52.0
+text = "help"
+label_settings = SubResource("LabelSettings_kj465")
+
 [node name="CreditsButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -120,5 +146,6 @@ region_rect = Rect2(0, 0, 1152, 648)
 metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

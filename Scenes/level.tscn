@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://85y3qpeduac8"]
+[gd_scene load_steps=20 format=3 uid="uid://85y3qpeduac8"]
 
 [ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://Scripts/level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://Assets/bg.jpg" id="1_oi3di"]
-[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="2_vonw3"]
+[ext_resource type="PackedScene" uid="uid://bhrdlh3h6ojve" path="res://Scenes/Player.tscn" id="2_vonw3"]
 [ext_resource type="PackedScene" uid="uid://d3sckrvivqlju" path="res://Scenes/BlackHole.tscn" id="4_f2txt"]
 [ext_resource type="Script" uid="uid://bdrmgeijmmtyj" path="res://Scripts/camera_2d.gd" id="5_f2txt"]
 [ext_resource type="Texture2D" uid="uid://405sdgiushcm" path="res://Assets/Menu/9Patch MenuTP.png" id="6_1ainy"]
 [ext_resource type="FontFile" uid="uid://cw1yhatrnpysy" path="res://Assets/BLADRMF_.TTF" id="6_km5ld"]
+[ext_resource type="Script" uid="uid://cbbvb54fl4ibg" path="res://Scenes/pause_menu.gd" id="7_oqgf2"]
+[ext_resource type="Texture2D" uid="uid://den2cv8ksi11b" path="res://Assets/Menu/Button2.png" id="9_qxfql"]
+[ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="10_ha31o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i2t4f"]
 font = ExtResource("6_km5ld")
@@ -18,6 +21,41 @@ font = ExtResource("6_km5ld")
 font_size = 18
 font_color = Color(0.816533, 0.290501, 0.263621, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_pa6b8"]
+font = ExtResource("6_km5ld")
+font_size = 56
+font_color = Color(0.839411, 0.945393, 0.956874, 1)
+outline_size = 6
+outline_color = Color(4.81308e-06, 0.657309, 0.839027, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oqgf2"]
+font = ExtResource("6_km5ld")
+font_size = 22
+font_color = Color(0.282353, 0.223529, 0.447059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_crh0w"]
+font = ExtResource("6_km5ld")
+font_size = 24
+font_color = Color(0.283944, 0.224188, 0.447757, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qxfql"]
+font = ExtResource("6_km5ld")
+font_size = 60
+font_color = Color(0.941001, 0.550093, 0.572704, 1)
+outline_size = 5
+outline_color = Color(1, 0.331097, 0.181934, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c7le1"]
+font = ExtResource("6_km5ld")
+font_size = 25
+font_color = Color(0.813187, 0.910597, 0.805258, 1)
+outline_size = 2
+outline_color = Color(0, 0.882503, 0.411846, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ha31o"]
+font = ExtResource("6_km5ld")
+font_color = Color(0.822535, 0.939835, 0.945048, 1)
+
 [sub_resource type="Environment" id="Environment_1ainy"]
 background_mode = 3
 tonemap_mode = 3
@@ -28,8 +66,10 @@ glow_bloom = 1.0
 glow_blend_mode = 1
 
 [node name="Space" type="Node"]
-process_mode = 3
 script = ExtResource("1_1ainy")
+
+[node name="EndGameTimer" type="Timer" parent="."]
+wait_time = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(493, 372)
@@ -64,7 +104,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD"]
+[node name="ObjectiveLabel" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -95,7 +135,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/HUD"]
-process_mode = 2
+process_mode = 3
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -103,6 +143,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_oqgf2")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HUD/PauseMenu"]
 layout_mode = 1
@@ -114,7 +156,7 @@ anchor_bottom = 0.5
 offset_left = -206.0
 offset_top = -201.0
 offset_right = 206.0
-offset_bottom = 215.0
+offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_1ainy")
@@ -125,20 +167,388 @@ patch_margin_bottom = 64
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[node name="PauseLabel" type="Label" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -177.0
+offset_right = 129.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "paused"
+label_settings = SubResource("LabelSettings_pa6b8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ContinueButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -90.0
+offset_right = 114.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_qxfql")
+texture_pressed = ExtResource("9_qxfql")
+texture_hover = ExtResource("10_ha31o")
 
-[node name="ContinueButton2" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ContinueLabel" type="Label" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect/ContinueButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "continue"
+label_settings = SubResource("LabelSettings_oqgf2")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="QuitButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
+[node name="AudioButton" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = 4.0
+offset_right = 114.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_qxfql")
+texture_pressed = ExtResource("9_qxfql")
+texture_hover = ExtResource("10_ha31o")
+
+[node name="AudioButtonLabel" type="Label" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect/AudioButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -14.5
+offset_right = 67.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "music on"
+label_settings = SubResource("LabelSettings_crh0w")
+
+[node name="QuitButton2" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = 100.0
+offset_right = 114.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_qxfql")
+texture_pressed = ExtResource("9_qxfql")
+texture_hover = ExtResource("10_ha31o")
+
+[node name="QuitLabel" type="Label" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect/QuitButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -14.5
+offset_right = 67.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "quit"
+label_settings = SubResource("LabelSettings_crh0w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndGameMenu" type="Control" parent="CanvasLayer/HUD"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HUD/EndGameMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -201.0
+offset_right = 206.0
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1ainy")
+patch_margin_left = 164
+patch_margin_top = 64
+patch_margin_right = 164
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="EndLabel" type="Label" parent="CanvasLayer/HUD/EndGameMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -180.0
+offset_right = 129.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "signal
+lost"
+label_settings = SubResource("LabelSettings_qxfql")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer/HUD/EndGameMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -9.0
+offset_right = 114.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_qxfql")
+texture_pressed = ExtResource("9_qxfql")
+texture_hover = ExtResource("10_ha31o")
+
+[node name="RestartLabel" type="Label" parent="CanvasLayer/HUD/EndGameMenu/NinePatchRect/RestartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -14.5
+offset_right = 74.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "try again"
+label_settings = SubResource("LabelSettings_oqgf2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="CanvasLayer/HUD/EndGameMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = 97.0
+offset_right = 114.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_qxfql")
+texture_pressed = ExtResource("9_qxfql")
+texture_hover = ExtResource("10_ha31o")
+
+[node name="QuitLabel" type="Label" parent="CanvasLayer/HUD/EndGameMenu/NinePatchRect/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -14.5
+offset_right = 67.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "quit"
+label_settings = SubResource("LabelSettings_crh0w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinMenu" type="Control" parent="CanvasLayer/HUD"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HUD/WinMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -165.0
+offset_right = 206.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1ainy")
+patch_margin_left = 164
+patch_margin_top = 64
+patch_margin_right = 164
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="EndLabel" type="Label" parent="CanvasLayer/HUD/WinMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -161.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You escaped
+spaghettification!"
+label_settings = SubResource("LabelSettings_c7le1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer/HUD/WinMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -36.0
+offset_right = 114.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_qxfql")
+texture_pressed = ExtResource("9_qxfql")
+texture_hover = ExtResource("10_ha31o")
+
+[node name="RestartLabel" type="Label" parent="CanvasLayer/HUD/WinMenu/NinePatchRect/RestartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -14.5
+offset_right = 74.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "play again"
+label_settings = SubResource("LabelSettings_oqgf2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="CanvasLayer/HUD/WinMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = 67.0
+offset_right = 114.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_qxfql")
+texture_pressed = ExtResource("9_qxfql")
+texture_hover = ExtResource("10_ha31o")
+
+[node name="QuitLabel" type="Label" parent="CanvasLayer/HUD/WinMenu/NinePatchRect/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -14.5
+offset_right = 67.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "quit"
+label_settings = SubResource("LabelSettings_crh0w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FuelLabel" type="Label" parent="CanvasLayer/HUD"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 64.0
+offset_top = 541.0
+offset_right = 120.0
+offset_bottom = 564.0
+text = "fuel cells: 0/5"
+label_settings = SubResource("LabelSettings_ha31o")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1ainy")
+
+[connection signal="pressed" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/ContinueButton" to="CanvasLayer/HUD/PauseMenu" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/AudioButton" to="CanvasLayer/HUD/PauseMenu" method="_on_audio_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/QuitButton2" to="CanvasLayer/HUD/PauseMenu" method="_on_quit_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/EndGameMenu/NinePatchRect/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/EndGameMenu/NinePatchRect/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/WinMenu/NinePatchRect/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/WinMenu/NinePatchRect/QuitButton" to="." method="_on_quit_button_pressed"]

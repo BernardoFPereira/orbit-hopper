@@ -4,8 +4,11 @@ class_name Player
 @export var orbit_target: Node2D
 @export var speed := 200
 
+@onready var space: Node = $".."
 @onready var camera: Camera2D = $"../Camera2D"
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var invulnerability_timer: Timer = $InvulnerabilityTimer
+@onready var end_game_timer: Timer = $"../EndGameTimer"
 
 const  WIDTH := 1886
 const  HEIGHT := 1999
@@ -18,22 +21,11 @@ enum States {
 	Dead,
 }
 
-func set_state(new_state) -> void:
-	match new_state:
-		States.Orbit:
-			camera.target = orbit_target
-		States.Dead:
-			camera.target = self
-			set_collision_layer_value(2, 0)
-		_:
-			camera.target = self
-	
-	state = new_state
-
 var state: States = States.Flying
 var last_orbit: Node2D
 var orbit_clockwise := true
 var just_spawned := true
+var collected_fuel := 0
 
 func _process(delta: float) -> void:
 	if global_position.x > WIDTH + 50:
@@ -45,7 +37,29 @@ func _process(delta: float) -> void:
 		global_position.y = -50
 	elif global_position.y < -50:
 		global_position.y = HEIGHT + 50
+	
+	handle_state()
+	handle_input(delta)
+	move_and_slide()
 
+func set_state(new_state) -> void:
+	match new_state:
+		States.Orbit:
+			camera.target = orbit_target
+			# Rodar chance de encontrar combustivel
+			var probability = randf_range(0, 100)
+			if probability > 70:
+				space.fuel_cells_collected += 1
+			
+		States.Dead:
+			camera.target = self
+			set_collision_layer_value(2, 0)
+		_:
+			camera.target = self
+	
+	state = new_state
+
+func handle_state():
 	match state:
 		States.Orbit:
 			velocity = Vector2.ZERO
@@ -78,9 +92,6 @@ func _process(delta: float) -> void:
 				add_sibling(dead_fx)
 				call_deferred("queue_free")
 			pass
-		
-	handle_input(delta)
-	move_and_slide()
 
 func handle_input(delta):
 	match state:
@@ -133,3 +144,6 @@ func check_orbit_side(target_pos: Vector2) -> ContactDir:
 		return ContactDir.RIGHT
 	else:
 		return ContactDir.LEFT
+
+func _on_invulnerability_timer_timeout() -> void:
+	just_spawned = false
