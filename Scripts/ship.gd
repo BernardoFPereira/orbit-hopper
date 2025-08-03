@@ -9,6 +9,7 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var invulnerability_timer: Timer = $InvulnerabilityTimer
 @onready var end_game_timer: Timer = $"../EndGameTimer"
+@onready var fx_player: AudioStreamPlayer = $"../FXPlayer"
 
 const  WIDTH := 1886
 const  HEIGHT := 1999
@@ -88,6 +89,7 @@ func handle_state():
 			var dead_fx = preload("res://Particulas_Igor/ship_explosion.tscn").instantiate()
 			
 			if get_slide_collision_count() > 0:
+				fx_player.play()
 				dead_fx.global_transform = global_transform
 				dead_fx.emitting = true
 				add_sibling(dead_fx)

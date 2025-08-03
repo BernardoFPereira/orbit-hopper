@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://85y3qpeduac8"]
+[gd_scene load_steps=23 format=3 uid="uid://85y3qpeduac8"]
 
 [ext_resource type="Script" uid="uid://bjnk40kbe2apc" path="res://Scripts/level.gd" id="1_1ainy"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://Assets/bg.jpg" id="1_oi3di"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://cbbvb54fl4ibg" path="res://Scripts/pause_menu.gd" id="7_oqgf2"]
 [ext_resource type="Texture2D" uid="uid://den2cv8ksi11b" path="res://Assets/Menu/Button2.png" id="9_qxfql"]
 [ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="10_ha31o"]
+[ext_resource type="AudioStream" uid="uid://b10mtvyx6c3yl" path="res://Audio/Musics/mus_Game.mp3" id="11_ha31o"]
+[ext_resource type="AudioStream" uid="uid://b5fnl3t5c4hlp" path="res://Audio/UI/aud_Botao2.ogg" id="12_pa6b8"]
+[ext_resource type="AudioStream" uid="uid://du6xu5b21i3ex" path="res://Audio/Effects/death_rumble.ogg" id="13_pa6b8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i2t4f"]
 font = ExtResource("6_km5ld")
@@ -287,7 +290,7 @@ offset_right = 67.0
 offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "music on"
+text = "audio on"
 label_settings = SubResource("LabelSettings_crh0w")
 
 [node name="QuitButton2" type="TextureButton" parent="CanvasLayer/HUD/PauseMenu/NinePatchRect"]
@@ -570,11 +573,34 @@ vertical_alignment = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1ainy")
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ha31o")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
+[node name="UIPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_pa6b8")
+volume_db = -12.0
+bus = &"UI"
+
+[node name="FXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_pa6b8")
+volume_db = -25.782
+bus = &"FX"
+
 [connection signal="timeout" from="EndGameTimer" to="." method="_on_end_game_timer_timeout"]
+[connection signal="button_down" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/ContinueButton" to="CanvasLayer/HUD/PauseMenu" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/ContinueButton" to="CanvasLayer/HUD/PauseMenu" method="_on_continue_button_pressed"]
+[connection signal="button_down" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/AudioButton" to="CanvasLayer/HUD/PauseMenu" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/AudioButton" to="CanvasLayer/HUD/PauseMenu" method="_on_audio_button_pressed"]
+[connection signal="button_down" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/QuitButton2" to="CanvasLayer/HUD/PauseMenu" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HUD/PauseMenu/NinePatchRect/QuitButton2" to="CanvasLayer/HUD/PauseMenu" method="_on_quit_button_2_pressed"]
+[connection signal="button_down" from="CanvasLayer/HUD/EndGameMenu/NinePatchRect/RestartButton" to="CanvasLayer/HUD/PauseMenu" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HUD/EndGameMenu/NinePatchRect/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="button_down" from="CanvasLayer/HUD/EndGameMenu/NinePatchRect/QuitButton" to="CanvasLayer/HUD/PauseMenu" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HUD/EndGameMenu/NinePatchRect/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_down" from="CanvasLayer/HUD/WinMenu/NinePatchRect/RestartButton" to="CanvasLayer/HUD/PauseMenu" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HUD/WinMenu/NinePatchRect/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="button_down" from="CanvasLayer/HUD/WinMenu/NinePatchRect/QuitButton" to="CanvasLayer/HUD/PauseMenu" method="_on_button_down"]
 [connection signal="pressed" from="CanvasLayer/HUD/WinMenu/NinePatchRect/QuitButton" to="." method="_on_quit_button_pressed"]

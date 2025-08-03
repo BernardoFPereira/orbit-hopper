@@ -17,7 +17,7 @@ const  WIDTH := 1886
 const  HEIGHT := 1999
 
 var fuel_cells_collected := 0
-var time_left := 25.0
+var time_left := GAME_TIME
 var game_won := false
 var game_lost := false
 
@@ -74,12 +74,12 @@ func generate_planets(accepted_planet_data: Array) -> void:
 	var special_planets := 0
 	
 	for e in accepted_planet_data:
-		var rand_tint = Color(randi_range(0, 255),randi_range(0, 255),randi_range(0, 255))
+		#var rand_tint = Color(randi_range(0, 255),randi_range(0, 255),randi_range(0, 255))
 		var planet = planet_obj.instantiate()
 		planet.transform.origin = e[0]
 		planet.scale = Vector2(e[1], e[1])
 		planet.rotate(rad_to_deg(randf_range(0, 359)))
-		planet.self_modulate = rand_tint
+		#planet.self_modulate = rand_tint
 		
 		if planet.scale.x < 1.4 and special_planets < 2:
 			planet.special = true

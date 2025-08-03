@@ -29,7 +29,6 @@ const BLACK_HOLE = preload("res://Assets/Planets/BlackHole.png")
 	DATHO,
 	KASHYI,
 	NEFO,
-	SOL,
 	]
 
 @export var textures_special := [
@@ -50,7 +49,7 @@ func _ready() -> void:
 		rand_idx = randi_range(0, len(textures_special) - 1)
 		mesh_instance.texture = textures_special[rand_idx]
 	else:
-		rand_idx = randi_range(0, len(textures) - 2)
+		rand_idx = randi_range(0, len(textures) - 1)
 		mesh_instance.texture = textures[rand_idx]
 		
 	if scale.x > 2.4:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://coqbs1m8nx0nl"]
+[gd_scene load_steps=15 format=3 uid="uid://coqbs1m8nx0nl"]
 
 [ext_resource type="Texture2D" uid="uid://dl5bhgs3nulof" path="res://Assets/Menu/Logo.png" id="1_iclcp"]
 [ext_resource type="Script" uid="uid://bs52glslmy84u" path="res://Scripts/start_menu.gd" id="1_kj465"]
@@ -6,8 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="3_j7iax"]
 [ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://Assets/bg.jpg" id="3_t3ooo"]
 [ext_resource type="FontFile" uid="uid://cw1yhatrnpysy" path="res://Assets/BLADRMF_.TTF" id="4_iclcp"]
+[ext_resource type="AudioStream" uid="uid://cwbtix55k4wf" path="res://Audio/Musics/mus_Menu.mp3" id="7_083qg"]
+[ext_resource type="Texture2D" uid="uid://405sdgiushcm" path="res://Assets/Menu/9Patch MenuTP.png" id="7_onoq0"]
+[ext_resource type="AudioStream" uid="uid://b5fnl3t5c4hlp" path="res://Audio/UI/aud_Botao2.ogg" id="8_7qoau"]
+[ext_resource type="Texture2D" uid="uid://dkpykdud04504" path="res://Assets/Planets/Blue.png" id="8_eb888"]
+[ext_resource type="Texture2D" uid="uid://b72msrvkoepq6" path="res://Assets/Ships/pilotexample.png" id="9_iotfk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kj465"]
+font = ExtResource("4_iclcp")
+font_size = 24
+font_color = Color(0.263315, 0.178551, 0.291426, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0kum6"]
+font = ExtResource("4_iclcp")
+font_size = 24
+font_color = Color(0.263315, 0.178551, 0.291426, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6v6fk"]
 font = ExtResource("4_iclcp")
 font_size = 24
 font_color = Color(0.263315, 0.178551, 0.291426, 1)
@@ -22,29 +37,34 @@ grow_vertical = 2
 script = ExtResource("1_kj465")
 metadata/_edit_lock_ = true
 
-[node name="Logo" type="Sprite2D" parent="."]
+[node name="MainMenu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Logo" type="Sprite2D" parent="MainMenu"]
 position = Vector2(568, 235)
 scale = Vector2(1.53297, 1.53297)
 texture = ExtResource("1_iclcp")
 
-[node name="PlayButton" type="TextureButton" parent="."]
+[node name="PlayButton" type="TextureButton" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -118.0
-offset_top = -214.0
-offset_right = 118.0
-offset_bottom = -129.0
+offset_left = 438.0
+offset_top = 394.0
+offset_right = 674.0
+offset_bottom = 479.0
 grow_horizontal = 2
 grow_vertical = 0
 texture_normal = ExtResource("2_t3ooo")
 texture_pressed = ExtResource("3_j7iax")
 texture_hover = ExtResource("3_j7iax")
 
-[node name="PlayLabel" type="Label" parent="PlayButton"]
+[node name="PlayLabel" type="Label" parent="MainMenu/PlayButton"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 24.0
@@ -53,24 +73,24 @@ offset_bottom = 52.0
 text = "play"
 label_settings = SubResource("LabelSettings_kj465")
 
-[node name="HelpButton" type="TextureButton" parent="."]
+[node name="HelpButton" type="TextureButton" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -261.0
-offset_top = -114.0
-offset_right = -25.0
-offset_bottom = -29.0
+offset_left = 851.0
+offset_top = 494.0
+offset_right = 1087.0
+offset_bottom = 579.0
 grow_horizontal = 0
 grow_vertical = 0
 texture_normal = ExtResource("2_t3ooo")
 texture_pressed = ExtResource("3_j7iax")
 texture_hover = ExtResource("3_j7iax")
 
-[node name="HelpLabel" type="Label" parent="HelpButton"]
+[node name="HelpLabel" type="Label" parent="MainMenu/HelpButton"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 24.0
@@ -79,21 +99,21 @@ offset_bottom = 52.0
 text = "help"
 label_settings = SubResource("LabelSettings_kj465")
 
-[node name="CreditsButton" type="TextureButton" parent="."]
+[node name="CreditsButton" type="TextureButton" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 25.0
-offset_top = -102.0
+offset_top = 506.0
 offset_right = 261.0
-offset_bottom = -17.0
+offset_bottom = 591.0
 grow_vertical = 0
 texture_normal = ExtResource("2_t3ooo")
 texture_pressed = ExtResource("3_j7iax")
 texture_hover = ExtResource("3_j7iax")
 
-[node name="CreditsLabel" type="Label" parent="CreditsButton"]
+[node name="CreditsLabel" type="Label" parent="MainMenu/CreditsButton"]
 layout_mode = 0
 offset_left = 62.0
 offset_top = 24.0
@@ -103,24 +123,24 @@ text = "credits"
 label_settings = SubResource("LabelSettings_kj465")
 horizontal_alignment = 1
 
-[node name="QuitButton" type="TextureButton" parent="."]
+[node name="QuitButton" type="TextureButton" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -118.0
-offset_top = -126.0
-offset_right = 118.0
-offset_bottom = -41.0
+offset_left = 438.0
+offset_top = 482.0
+offset_right = 674.0
+offset_bottom = 567.0
 grow_horizontal = 2
 grow_vertical = 0
 texture_normal = ExtResource("2_t3ooo")
 texture_pressed = ExtResource("3_j7iax")
 texture_hover = ExtResource("3_j7iax")
 
-[node name="QuitLabel" type="Label" parent="QuitButton"]
+[node name="QuitLabel" type="Label" parent="MainMenu/QuitButton"]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 24.0
@@ -130,14 +150,14 @@ text = "quit"
 label_settings = SubResource("LabelSettings_kj465")
 horizontal_alignment = 1
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="MainMenu"]
 
-[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground"]
+[node name="Parallax2D" type="Parallax2D" parent="MainMenu/ParallaxBackground"]
 repeat_size = Vector2(1151, 0)
 autoscroll = Vector2(24, 0)
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+[node name="Sprite2D" type="Sprite2D" parent="MainMenu/ParallaxBackground/Parallax2D"]
 texture_repeat = 2
 texture = ExtResource("3_t3ooo")
 centered = false
@@ -145,7 +165,296 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1152, 648)
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
-[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="HelpMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="ReturntoMainMenuButton" type="TextureButton" parent="HelpMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -97.0
+offset_right = 252.0
+offset_bottom = -12.0
+grow_vertical = 0
+texture_normal = ExtResource("2_t3ooo")
+texture_pressed = ExtResource("3_j7iax")
+texture_hover = ExtResource("3_j7iax")
+
+[node name="RMainMenuLabel" type="Label" parent="HelpMenu/ReturntoMainMenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "main menu"
+label_settings = SubResource("LabelSettings_0kum6")
+horizontal_alignment = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="HelpMenu"]
+
+[node name="Parallax2D" type="Parallax2D" parent="HelpMenu/ParallaxBackground"]
+repeat_size = Vector2(1151, 0)
+autoscroll = Vector2(24, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HelpMenu/ParallaxBackground/Parallax2D"]
+texture_repeat = 2
+texture = ExtResource("3_t3ooo")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+metadata/_edit_lock_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HelpMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -309.0
+offset_right = 383.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_onoq0")
+patch_margin_left = 164
+patch_margin_top = 64
+patch_margin_right = 164
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HelpMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.0
+offset_top = -225.0
+offset_right = 353.0
+offset_bottom = 243.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.000384522
+theme_override_colors/default_color = Color(1.58831e-06, 0.619119, 0.547649, 1)
+theme_override_colors/font_shadow_color = Color(3.00817e-08, 0.281997, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_iclcp")
+text = "objective:
+collect five fuel cells to activate hyperscape and escape the mighty clutches of the black hole.
+
+
+controls:
+hold left mouse click to build speed in orbit around a planet
+
+
+
+
+
+
+
+release to launch the ship from orbit to move around space
+
+
+
+
+
+right mouse click + aim with mouse to boost in the direction of your mouse cursor, but the controls are busted! Use with caution.
+"
+
+[node name="Blue" type="Sprite2D" parent="HelpMenu/NinePatchRect"]
+position = Vector2(373.5, 252.367)
+texture = ExtResource("8_eb888")
+
+[node name="Blue2" type="Sprite2D" parent="HelpMenu/NinePatchRect"]
+position = Vector2(305.5, 369.5)
+texture = ExtResource("8_eb888")
+
+[node name="Pilotexample" type="Sprite2D" parent="HelpMenu/NinePatchRect"]
+position = Vector2(391.5, 198.367)
+rotation = 0.340495
+texture = ExtResource("9_iotfk")
+
+[node name="Pilotexample2" type="Sprite2D" parent="HelpMenu/NinePatchRect"]
+position = Vector2(450.5, 385.5)
+rotation = -0.22766
+texture = ExtResource("9_iotfk")
+
+[node name="CreditsMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="ReturntoMainMenuButton" type="TextureButton" parent="CreditsMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -94.0
+offset_right = 252.0
+offset_bottom = -9.0
+grow_vertical = 0
+texture_normal = ExtResource("2_t3ooo")
+texture_pressed = ExtResource("3_j7iax")
+texture_hover = ExtResource("3_j7iax")
+
+[node name="RMainMenuLabel" type="Label" parent="CreditsMenu/ReturntoMainMenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -16.5
+offset_right = 74.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "main menu"
+label_settings = SubResource("LabelSettings_6v6fk")
+horizontal_alignment = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CreditsMenu"]
+
+[node name="Parallax2D" type="Parallax2D" parent="CreditsMenu/ParallaxBackground"]
+repeat_size = Vector2(1151, 0)
+autoscroll = Vector2(24, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CreditsMenu/ParallaxBackground/Parallax2D"]
+texture_repeat = 2
+texture = ExtResource("3_t3ooo")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+metadata/_edit_lock_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CreditsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -309.0
+offset_right = 383.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_onoq0")
+patch_margin_left = 164
+patch_margin_top = 64
+patch_margin_right = 164
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -347.0
+offset_top = -226.0
+offset_right = 351.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.000384522
+theme_override_colors/default_color = Color(1.58831e-06, 0.619119, 0.547649, 1)
+theme_override_colors/font_shadow_color = Color(3.00817e-08, 0.281997, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_iclcp")
+text = "game design
+igor leal
+bernardo pereira
+
+programming
+bernardo pereira
+
+2d Sprites + Animation
+lauro rosa
+
+visual effects (FX & particles)
+igor leal
+bernardo pereira
+
+menu layout & UI
+bernardo pereira
+lauro rosa
+
+audio design
+igor leal
+bernardo pereira
+______________________________________________________________________________
+audio attribution
+this game features audio assets sourced from open-source artists, primarily from opengameart.org and freesound.org. these sound effects and music were not produced by the development team.
+
+we would like to sincerely thank all the creators who shared their work under open licenses, making it possible to enhance our project with high-quality audio. full credits and attributions will be provided separately.
+
+Kenney -- Interface Sounds 1.0
+kenney.nl
+
+thwack 3.wav by THE_bizniss -- freesound.org/s/39469/ -- License: Attribution 3.0
+
+PlasmaBlaster.wav by BigDino1995 -- freesound.org/s/569901/ -- License: Creative Commons 0
+
+Deep Attack Kick.wav by dostalievsky -- freesound.org/s/353915/ -- License: Creative Commons 0
+
+time capsule by yasuu0802 -- freesound.org/s/767335/ -- License: Creative Commons 0
+
+Through Space | OpenGameArt.org
+
+Space (orchestral) | OpenGameArt.org"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_083qg")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
+[node name="UIPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7qoau")
+volume_db = -12.0
+bus = &"UI"
+
+[connection signal="button_down" from="MainMenu/PlayButton" to="." method="_on_button_down"]
+[connection signal="pressed" from="MainMenu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="button_down" from="MainMenu/HelpButton" to="." method="_on_button_down"]
+[connection signal="pressed" from="MainMenu/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="button_down" from="MainMenu/CreditsButton" to="." method="_on_button_down"]
+[connection signal="pressed" from="MainMenu/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="button_down" from="MainMenu/QuitButton" to="." method="_on_button_down"]
+[connection signal="pressed" from="MainMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_down" from="HelpMenu/ReturntoMainMenuButton" to="." method="_on_button_down"]
+[connection signal="pressed" from="HelpMenu/ReturntoMainMenuButton" to="." method="_on_returnto_main_menu_button_pressed"]
+[connection signal="button_down" from="CreditsMenu/ReturntoMainMenuButton" to="." method="_on_button_down"]
+[connection signal="pressed" from="CreditsMenu/ReturntoMainMenuButton" to="." method="_on_returnto_main_menu_button_pressed"]

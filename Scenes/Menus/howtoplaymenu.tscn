@@ -14,7 +14,7 @@ font = ExtResource("5_n6f83")
 font_size = 24
 font_color = Color(0.263315, 0.178551, 0.291426, 1)
 
-[node name="Menu" type="Control"]
+[node name="HelpMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
