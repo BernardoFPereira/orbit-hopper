@@ -5,26 +5,49 @@ extends Node
 @onready var camera: Camera2D = $Camera2D
 
 @onready var time_left_label: Label = $CanvasLayer/HUD/TimeLeft
-@onready var fuel_label: Label = $CanvasLayer/HUD/FuelLabel
+@onready var fuel_label: Label = $CanvasLayer/HUD/FuelPanel/FuelLabel
+
+@onready var end_game_menu: Control = $CanvasLayer/HUD/EndGameMenu
+@onready var win_menu: Control = $CanvasLayer/HUD/WinMenu
+
+@export var GAME_TIME := 120.0
+@export var FUEL_CELLS_TO_WIN := 5
 
 const  WIDTH := 1886
 const  HEIGHT := 1999
 
 var fuel_cells_collected := 0
-var time_left := 120.0
+var time_left := 25.0
+var game_won := false
+var game_lost := false
 
 func _ready() -> void:
 	var accepted_planet_data = generate_planet_spawn_data(18)
 	generate_planets(accepted_planet_data)
 
 func _process(delta) -> void:
-	time_left -= delta
-	world_environment.environment.glow_intensity = 0.8 * black_hole.scale.x
-	if time_left < 110:
-		camera.shake(black_hole.scale.x * 0.5)
+	if time_left < 0:
+		game_lost = true
+		end_game_menu.visible = true
 	
-	time_left_label.text = ">>> T - %0.2f <<<" % time_left
+	world_environment.environment.glow_intensity = 0.6 * black_hole.scale.x
+	if game_won:
+		time_left = 0
+		time_left_label.label_settings.font_color = Color.AQUAMARINE
+	else:
+		time_left_label.label_settings.font_color = Color.from_string("#d04a43", Color.CRIMSON)
+		time_left -= delta
+		
+	if time_left < GAME_TIME - 20 and !game_won:
+		camera.shake(black_hole.scale.x * 0.5)
+		pass
+	
+	time_left_label.text = ">>> T - %0.2f <<<" % time_left if time_left > 0 else ">>> T + %0.2f <<<" % abs(time_left)
 	fuel_label.text = "fuel cells: %s/5" % fuel_cells_collected
+	
+	if fuel_cells_collected >= FUEL_CELLS_TO_WIN:
+		win_menu.visible = true
+		game_won = true
 
 func generate_planet_spawn_data(amount: int) -> Array:
 	var spawn_point: Vector2
@@ -73,3 +96,7 @@ func _on_restart_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menus/start_menu.tscn")
+
+func _on_end_game_timer_timeout() -> void:
+	game_lost = true
+	end_game_menu.visible = true

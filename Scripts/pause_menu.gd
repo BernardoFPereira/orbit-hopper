@@ -1,5 +1,7 @@
 extends Control
 
+@onready var space: Node = $"../../.."
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		switch_pause()
@@ -15,5 +17,6 @@ func _on_quit_button_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menus/start_menu.tscn")
 
 func switch_pause() -> void:
+	if !space.game_won:
 		get_tree().paused = !get_tree().paused
 		visible = !visible

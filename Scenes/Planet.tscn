@@ -22,6 +22,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_f2txt")
 
 [node name="MeshInstance" type="MeshInstance2D" parent="."]
+texture_filter = 1
 position = Vector2(0.484124, 0.484131)
 scale = Vector2(57.0317, 57.0317)
 mesh = SubResource("QuadMesh_485rr")

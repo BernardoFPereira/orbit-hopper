@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK_jam"
-run/main_scene="uid://85y3qpeduac8"
+run/main_scene="uid://coqbs1m8nx0nl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

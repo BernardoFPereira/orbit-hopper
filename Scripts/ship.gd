@@ -39,7 +39,8 @@ func _process(delta: float) -> void:
 		global_position.y = HEIGHT + 50
 	
 	handle_state()
-	handle_input(delta)
+	if !(space.game_lost and space.game_won):
+		handle_input(delta)
 	move_and_slide()
 
 func set_state(new_state) -> void:
@@ -90,6 +91,7 @@ func handle_state():
 				dead_fx.global_transform = global_transform
 				dead_fx.emitting = true
 				add_sibling(dead_fx)
+				end_game_timer.start()
 				call_deferred("queue_free")
 			pass
 
@@ -135,7 +137,7 @@ func check_orbit_side(target_pos: Vector2) -> ContactDir:
 	var angle_degrees = rad_to_deg(acos(dot))
 	
 	# If angle is small, target is in front
-	if angle_degrees < 18.0:
+	if angle_degrees < 16.0:
 		return ContactDir.FRONT
 		
 	# Otherwise, check right/left using cross product

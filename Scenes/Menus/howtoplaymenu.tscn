@@ -29,10 +29,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = -102.0
-offset_right = 261.0
-offset_bottom = -17.0
+offset_left = 16.0
+offset_top = -97.0
+offset_right = 252.0
+offset_bottom = -12.0
 grow_vertical = 0
 texture_normal = ExtResource("3_yt47f")
 texture_pressed = ExtResource("4_lirin")
@@ -98,9 +98,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -351.0
+offset_left = -349.0
 offset_top = -225.0
-offset_right = 351.0
+offset_right = 353.0
 offset_bottom = 243.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -108,8 +108,11 @@ rotation = 0.000384522
 theme_override_colors/default_color = Color(1.58831e-06, 0.619119, 0.547649, 1)
 theme_override_colors/font_shadow_color = Color(3.00817e-08, 0.281997, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_n6f83")
-text = "controls:
+text = "objective:
+collect five fuel cells to activate hyperscape and escape the mighty clutches of the black hole.
 
+
+controls:
 hold left mouse click to build speed in orbit around a planet
 
 
@@ -124,27 +127,25 @@ release to launch the ship from orbit to move around space
 
 
 
-
-
-
-right mouse click + aim with mouse to boost in the direction of your mouse cursor, but the controls are busted! Use with caution."
+right mouse click + aim with mouse to boost in the direction of your mouse cursor, but the controls are busted! Use with caution.
+"
 
 [node name="Blue" type="Sprite2D" parent="NinePatchRect"]
-position = Vector2(392, 176)
+position = Vector2(373.5, 252.367)
 texture = ExtResource("7_lirin")
 
 [node name="Blue2" type="Sprite2D" parent="NinePatchRect"]
-position = Vector2(389, 321)
+position = Vector2(305.5, 369.5)
 texture = ExtResource("7_lirin")
 
 [node name="Pilotexample" type="Sprite2D" parent="NinePatchRect"]
-position = Vector2(410, 122)
+position = Vector2(391.5, 198.367)
 rotation = 0.340495
 texture = ExtResource("8_n6f83")
 
 [node name="Pilotexample2" type="Sprite2D" parent="NinePatchRect"]
-position = Vector2(464, 347)
-rotation = 0.943356
+position = Vector2(450.5, 385.5)
+rotation = -0.22766
 texture = ExtResource("8_n6f83")
 
 [connection signal="pressed" from="ReturntoMainMenuButton" to="." method="_on_returnto_main_menu_button_pressed"]
