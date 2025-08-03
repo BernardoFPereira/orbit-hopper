@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bs52glslmy84u" path="res://Scripts/start_menu.gd" id="1_57g7b"]
 [ext_resource type="Texture2D" uid="uid://den2cv8ksi11b" path="res://Assets/Menu/Button2.png" id="2_lfsco"]
 [ext_resource type="Texture2D" uid="uid://dalbd2hddknsp" path="res://Assets/Menu/Button.png" id="3_nkj34"]
-[ext_resource type="FontFile" uid="uid://cw1yhatrnpysy" path="res://Assets/BLADRMF_.TTF" id="4_m6kpw"]
-[ext_resource type="Texture2D" uid="uid://dqw4mvquxgd5c" path="res://Assets/bg.jpg" id="5_2r6hv"]
+[ext_resource type="FontFile" uid="uid://cxvkpg6uegoar" path="res://Assets/BLADRMF_.TTF" id="4_m6kpw"]
+[ext_resource type="Texture2D" uid="uid://doinyxei1d3t6" path="res://Assets/bg.jpg" id="5_2r6hv"]
 [ext_resource type="Texture2D" uid="uid://405sdgiushcm" path="res://Assets/Menu/9Patch MenuTP.png" id="6_wb660"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kj465"]
@@ -106,9 +106,42 @@ rotation = 0.000384522
 theme_override_colors/default_color = Color(1.58831e-06, 0.619119, 0.547649, 1)
 theme_override_colors/font_shadow_color = Color(3.00817e-08, 0.281997, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_m6kpw")
-text = "caixa de texto
-digite sempre em caixa baixa e acentos vao foder com a font
+text = "game design
+igor leal
+bernardo pereira
 
-tamo junto"
+programming
+bernardo pereira
+
+2d art
+lauro rosa
+
+visual effects (glow & sparkles)
+igor leal
+bernardo pereira
+
+menu layout & UI
+bernardo pereira
+lauro rosa
+
+audio design
+igor leal
+______________________________________________________________________________
+audio attribution
+this game features audio assets sourced from open-source artists, primarily from opengameart.org and freesound.org. these sound effects and music were not produced by the development team.
+
+we would like to sincerely thank all the creators who shared their work under open licenses, making it possible to enhance our project with high-quality audio. full credits and attributions will be provided separately.
+
+thwack 3.wav by THE_bizniss -- https://freesound.org/s/39469/ -- License: Attribution 3.0
+
+PlasmaBlaster.wav by BigDino1995 -- https://freesound.org/s/569901/ -- License: Creative Commons 0
+
+Deep Attack Kick.wav by dostalievsky -- https://freesound.org/s/353915/ -- License: Creative Commons 0
+
+time capsule by yasuu0802 -- https://freesound.org/s/767335/ -- License: Creative Commons 0
+
+Through Space | OpenGameArt.org
+
+Space (orchestral) | OpenGameArt.org"
 
 [connection signal="pressed" from="ReturntoMainMenuButton" to="." method="_on_returnto_main_menu_button_pressed"]
